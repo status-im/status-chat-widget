@@ -2,18 +2,16 @@
   "name": "status-chat-widget",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "ethereumjs-devp2p": "github:status-im/ethereumjs-devp2p#mailserver-experiment",
-    "murmur-client": "^0.2.5",
+    "murmur-client": "^0.3.8",
     "null-loader": "^0.1.1",
-    "status-js-api": "^1.2.6",
+    "status-js-api": "^1.2.9",
     "webpack": "^4.29.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
