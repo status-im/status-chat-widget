@@ -5,7 +5,7 @@ module.exports = {
   target: "web",
   output: {
     path: path.join(__dirname, "dist/js"),
-    filename: "[name].js"
+    filename: "statuswidget.js"
   },
   resolve: {
     extensions: [".js"]
