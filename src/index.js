@@ -54,8 +54,7 @@ window.StatusWidget = function (channelName, chatWidget) {
       chatBox.append(div);
       lastMessageUser = message.username;
 
-      var element = document.getElementById("chat");
-      element.scrollTop = element.scrollHeight;
+      chatBox.scrollTop = chatBox.scrollHeight;
     });
 
     chatInput.addEventListener("keyup", function(event) {
