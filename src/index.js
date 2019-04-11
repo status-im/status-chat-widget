@@ -6,16 +6,17 @@ window.StatusWidget = function (channelName) {
   channelTitle.innerHTML = "#" + channelName;
 
   var chatBox = document.createElement('div');
-  chatBox.id = "chat";
+  chatBox.className = "chat";
 
   var chatInput = document.createElement('input');
   chatInput.type = "input";
-  chatInput.id = "post";
+  chatInput.className = "post";
   chatInput.placeholder = "Type a message..";
 
-  document.querySelectorAll("#status-chat-widget")[0].append(channelTitle);
-  document.querySelectorAll("#status-chat-widget")[0].append(chatBox);
-  document.querySelectorAll("#status-chat-widget")[0].append(chatInput);
+  document.querySelectorAll("#status-chat-widget")[0].className += " _status-chat-widget";
+  document.querySelectorAll("._status-chat-widget")[0].append(channelTitle);
+  document.querySelectorAll("._status-chat-widget")[0].append(chatBox);
+  document.querySelectorAll("._status-chat-widget")[0].append(chatInput);
 
   let server = new Murmur({
     protocols: ["libp2p"],
@@ -33,6 +34,11 @@ window.StatusWidget = function (channelName) {
 
   status.joinChat(channelName, () => {
     status.onMessage(channelName, (err, data) => {
+      if (err || !data) {
+        console.dir("error receiving message");
+        console.dir(err);
+        return;
+      }
       const msg = JSON.parse(data.payload)[1][0];
 
       const message = { username: data.username, message: msg, pubkey: data.data.sig, data };
@@ -42,25 +48,23 @@ window.StatusWidget = function (channelName) {
       } else {
         div.innerHTML = "<span class='username'>" + message.username + "</span><span class='message'>" + message.message + "</span>";
       }
-      document.querySelectorAll("#chat")[0].append(div);
+      chatBox.append(div);
       lastMessageUser = message.username;
 
       var element = document.getElementById("chat");
       element.scrollTop = element.scrollHeight;
     });
 
-    var input = document.getElementById("post")
-
-    input.addEventListener("keyup", function(event) {
+    chatInput.addEventListener("keyup", function(event) {
       if (event.keyCode !== 13) {
         return
       }
 
       event.preventDefault();
 
-      var value = document.getElementById("post").value;
+      var value = chatInput.value;
       status.sendMessage(channelName, value);
-      document.getElementById("post").value = "";
+      chatInput.value = "";
     });
   })
 }
