@@ -29,14 +29,21 @@ window.StatusWidget = function (channelName) {
   const status = new StatusJS();
   status.connectToProvider(server.provider, null);
 
+  var lastMessageUser = "";
+
   status.joinChat(channelName, () => {
     status.onMessage(channelName, (err, data) => {
       const msg = JSON.parse(data.payload)[1][0];
 
       const message = { username: data.username, message: msg, pubkey: data.data.sig, data };
       let div = document.createElement('div');
-      div.innerHTML = message.username + "> " + message.message;
-      document.querySelectorAll("#chat")[0].append(div)
+      if (lastMessageUser === message.username) {
+        div.innerHTML = "<span class='message'>" + message.message + "</span>";
+      } else {
+        div.innerHTML = "<span class='username'>" + message.username + "</span><span class='message'>" + message.message + "</span>";
+      }
+      document.querySelectorAll("#chat")[0].append(div);
+      lastMessageUser = message.username;
 
       var element = document.getElementById("chat");
       element.scrollTop = element.scrollHeight;
