@@ -1,7 +1,10 @@
 import StatusJS from 'status-js-api';
 import Murmur from 'murmur-client';
 
-window.StatusWidget = function (channelName) {
+window.StatusWidget = function (channelName, chatWidget) {
+  if (!channelName) { throw new Error("no channelName provider"); }
+  if (!chatWidget) { throw new Error("no DOM element for chat"); }
+
   var channelTitle = document.createElement('h3');
   channelTitle.innerHTML = "#" + channelName;
 
@@ -13,10 +16,10 @@ window.StatusWidget = function (channelName) {
   chatInput.className = "post";
   chatInput.placeholder = "Type a message..";
 
-  document.querySelectorAll("#status-chat-widget")[0].className += " _status-chat-widget";
-  document.querySelectorAll("._status-chat-widget")[0].append(channelTitle);
-  document.querySelectorAll("._status-chat-widget")[0].append(chatBox);
-  document.querySelectorAll("._status-chat-widget")[0].append(chatInput);
+  chatWidget.className += " _status-chat-widget";
+  chatWidget.append(channelTitle);
+  chatWidget.append(chatBox);
+  chatWidget.append(chatInput);
 
   let server = new Murmur({
     protocols: ["libp2p"],
