@@ -1,5 +1,6 @@
 import StatusJS from 'status-js-api';
 import Murmur from 'murmur-client';
+import Identicon from 'identicon.js';
 
 window.StatusWidget = function (channelName, chatWidget) {
   if (!channelName) { throw new Error("no channelName provider"); }
@@ -45,11 +46,21 @@ window.StatusWidget = function (channelName, chatWidget) {
       const msg = JSON.parse(data.payload)[1][0];
 
       const message = { username: data.username, message: msg, pubkey: data.data.sig, data };
+
+      const options = {
+          background: [255, 255, 255, 255],
+          margin: 0.24,
+          size: 32,
+          format: 'svg'
+        };
+  
+      const identicon = new Identicon(message.pubkey, options).toString();
+
       let div = document.createElement('div');
       if (lastMessageUser === message.username) {
         div.innerHTML = "<span class='message'>" + message.message + "</span>";
       } else {
-        div.innerHTML = "<span class='username'>" + message.username + "</span><span class='message'>" + message.message + "</span>";
+        div.innerHTML = "<img class='identicon' width=40 height=40 src='data:image/svg+xml;base64," + identicon + "' /><span class='username'>" + message.username + "</span><span class='message'>" + message.message + "</span>";
       }
       chatBox.append(div);
       lastMessageUser = message.username;

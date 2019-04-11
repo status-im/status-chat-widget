@@ -2665,6 +2665,11 @@ iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+identicon.js@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/identicon.js/-/identicon.js-2.3.3.tgz#c505b8d60ecc6ea13bbd991a33964c44c1ad60a1"
+  integrity sha512-/qgOkXKZ7YbeCYbawJ9uQQ3XJ3uBg9VDpvHjabCAPp6aRMhjLaFAxG90+1TxzrhKaj6AYpVGrx6UXQfQA41UEA==
+
 idna-uts46-hx@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/idna-uts46-hx/-/idna-uts46-hx-2.3.1.tgz#a1dc5c4df37eee522bf66d969cc980e00e8711f9"
@@ -6123,10 +6128,10 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-status-js-api@^1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/status-js-api/-/status-js-api-1.2.9.tgz#76cfc6e7ccb378c49fb38f6b67d1374259a3dbcb"
-  integrity sha512-Sn+Ivg3RjMrwVvc9cS2Yy87qBnZYhhhfcaVkvlNHWGcsBaEbvJ+RPzISumf+sjQUV3znhOSyb5KPRRM0+xtP+w==
+status-js-api@^1.2.11:
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/status-js-api/-/status-js-api-1.2.11.tgz#835a8be9b87ca7eb9e3107f92f6e4988b9ed374a"
+  integrity sha512-+lpfQsMdgCJusBLj6lWNA17z3vnfDfz7X5FawQzPy5+gGFC2UcTKwm+lwtqbQHv7K9Dkxr/FEBUgCG/2ce8+Xg==
   dependencies:
     bip39 "^2.5.0"
     bourne "^1.1.2"
