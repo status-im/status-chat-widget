@@ -2,13 +2,18 @@ import StatusJS from 'status-js-api';
 import Murmur from 'murmur-client';
 
 window.StatusWidget = function (channelName) {
+  var channelTitle = document.createElement('h3');
+  channelTitle.innerHTML = "#" + channelName;
+
   var chatBox = document.createElement('div');
   chatBox.id = "chat";
 
   var chatInput = document.createElement('input');
   chatInput.type = "input";
   chatInput.id = "post";
+  chatInput.placeholder = "Type a message..";
 
+  document.querySelectorAll("#status-chat-widget")[0].append(channelTitle);
   document.querySelectorAll("#status-chat-widget")[0].append(chatBox);
   document.querySelectorAll("#status-chat-widget")[0].append(chatInput);
 
@@ -32,7 +37,10 @@ window.StatusWidget = function (channelName) {
       let div = document.createElement('div');
       div.innerHTML = message.username + "> " + message.message;
       document.querySelectorAll("#chat")[0].append(div)
-    })
+
+      var element = document.getElementById("chat");
+      element.scrollTop = element.scrollHeight;
+    });
 
     var input = document.getElementById("post")
 
