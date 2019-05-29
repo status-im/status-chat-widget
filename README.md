@@ -2,10 +2,6 @@
 
 Easily embed a status chat in your website.
 
-### Screenshot
-
-![widget](https://notes.status.im/uploads/upload_a087221ad1f8dc5c34654d57a2e3d071.png)
-
 ### Usage
 
 Copy paste the following snippet to your website
